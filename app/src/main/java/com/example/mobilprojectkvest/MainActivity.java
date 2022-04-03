@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         else
         {
 
-            //надо чтоб данные из базы сравнивались
+            //надо чтоб данные из базы сравнивались :( Java
             if (login.equals(testLogin) && password.equals(testPassword))
             {
                 //Intent intent = new Intent(this, MenuPage.class);
