@@ -16,8 +16,6 @@ public class MainActivity extends AppCompatActivity {
 
     private String login;
     private String password;
-    private String testLogin;
-    private String testPassword;
 
     private EditText loginTxt;
     private EditText passwordTxt;
@@ -88,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                             return;
                         }
                     }
-                    Toast Warning = Toast.makeText(this, "Такого пользователя нету", Toast.LENGTH_SHORT);
+                    Toast Warning = Toast.makeText(this, "Такого пользователя нет", Toast.LENGTH_SHORT);
                     Warning.show();
                     Auth.close();
                     db.close();
@@ -107,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void OnRegister()
     {
-
+        Intent intent = new Intent(this, Register.class);
+        startActivity(intent);
     }
 }
