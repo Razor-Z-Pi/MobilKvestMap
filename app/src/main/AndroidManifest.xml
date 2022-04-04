@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MobilProjectKvest">
         <activity
+            android:name=".MenuPageActivity"
+            android:exported="false"
+            android:label="@string/title_activity_menu_page"
+            android:theme="@style/Theme.MobilProjectKvest.NoActionBar" />
+        <activity
             android:name=".Register"
             android:exported="false" />
         <activity

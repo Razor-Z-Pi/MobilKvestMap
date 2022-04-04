@@ -71,4 +71,6 @@ public class Register extends AppCompatActivity {
     public void onHome(View view) {
         Home();
     }
+
+
 }
