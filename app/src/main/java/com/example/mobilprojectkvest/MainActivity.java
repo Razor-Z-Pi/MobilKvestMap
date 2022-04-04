@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
                             toast1.show();
 
                             Intent intent = new Intent(this, MenuPageActivity.class);
+
                             startActivity(intent);
                             return;
                         }

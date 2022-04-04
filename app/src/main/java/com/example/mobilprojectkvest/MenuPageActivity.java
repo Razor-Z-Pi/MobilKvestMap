@@ -45,8 +45,27 @@ public class MenuPageActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
+
+        View navHeader = navigationView.getHeaderView(0);
+        TextView login = (TextView) navHeader.findViewById(R.id.logintx);
+        TextView pass = (TextView) navHeader.findViewById(R.id.passtxt);
+
+        /*
+
+
+
+        тут короченужно менять, опять через неебические муки это все нашел
+
+
+        
+         */
+
+        login.setText("логин");
+        pass.setText("пароль");
+
+
     }
-    
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
