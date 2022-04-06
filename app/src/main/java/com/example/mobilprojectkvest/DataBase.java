@@ -21,7 +21,7 @@ public class DataBase extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_AUTH + " (id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "login TEXT," +
                 "password TEXT);");
-        // Создание таблицы справочника польщователя
+        // Создание таблицы справочника пользователя
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_USER + " (id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "nickname TEXT," +
                 "id_kvest INTEGER," +

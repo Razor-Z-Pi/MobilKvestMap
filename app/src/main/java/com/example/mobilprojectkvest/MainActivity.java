@@ -81,11 +81,8 @@ public class MainActivity extends AppCompatActivity {
                         String loginAuth = Auth.getString(1);
                         String passwordAuth = Auth.getString(2);
                         if (login.equals(loginAuth) && password.equals(passwordAuth)) {
-                            Toast toast1 = Toast.makeText(this, "Auth succeded", Toast.LENGTH_SHORT);
-                            toast1.show();
-
                             Intent intent = new Intent(this, MenuPageActivity.class);
-
+                            intent.putExtra("User", loginAuth);
                             startActivity(intent);
                             return;
                         }

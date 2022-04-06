@@ -22,41 +22,39 @@
 
     <Button
         android:id="@+id/CreateQuestBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="198dp"
+        android:layout_height="52dp"
         android:layout_marginTop="220dp"
         android:text="Создать квест"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="20dp"></Button>
+        app:layout_constraintTop_toTopOf="parent"></Button>
 
     <Button
         android:id="@+id/MapBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="196dp"
+        android:layout_height="54dp"
         android:text="Карта"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CreateQuestBtn"
-        app:layout_constraintVertical_bias="0.134"
-        android:textSize="20dp"/>
+        app:layout_constraintVertical_bias="0.134" />
 
     <Button
         android:id="@+id/ExitBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="198dp"
+        android:layout_height="56dp"
         android:text="Выход"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/MapBtn"
-        app:layout_constraintVertical_bias="0.176"
-        android:textSize="20dp"
-        />
+        app:layout_constraintVertical_bias="0.193" />
 
 
 </android.support.constraint.ConstraintLayout>
