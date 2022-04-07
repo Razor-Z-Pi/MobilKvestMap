@@ -1,22 +1,20 @@
 package com.example.mobilprojectkvest;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
-import android.support.design.widget.Snackbar;
-import android.support.design.widget.NavigationView;
+
+import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.widget.Button;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.mobilprojectkvest.databinding.ActivityMenuPageBinding;
 
