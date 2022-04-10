@@ -12,6 +12,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.Address;
 import android.location.Geocoder;
@@ -64,6 +65,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private DataBase databaseSource;
     private SQLiteDatabase db;
+    private Cursor cursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -244,10 +246,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 contentValues.put("Y", currentLatLng.longitude);
                 db.update(DataBase.TABLE_KVEST, contentValues, null, null);
                 db.insert(DataBase.TABLE_KVEST, null, contentValues);
+
                 Marker myMarker;
-                myMarker = mMap.addMarker(new MarkerOptions()
-                        .position(currentLatLng).title(String.valueOf(markerName.getText())));
-                markers.add(myMarker);
+                cursor = db.rawQuery("SELECT * FROM " + databaseSource.TABLE_KVEST + ";", null);
+
+                for (int i = 0; i < cursor.getCount(); i++) {
+                    LatLng latLng = new LatLng(cursor.getDouble(2), cursor.getDouble(3));
+
+                    myMarker = mMap.addMarker(new MarkerOptions()
+                            .position(latLng).title(cursor.getString(1)));
+                    markers.add(myMarker);
+                }
                 addMarkerLauout.setVisibility(View.INVISIBLE);
                 Toast toast = Toast.makeText(MapsActivity.this, "Маркер добавлен", Toast.LENGTH_SHORT);
                 toast.show();

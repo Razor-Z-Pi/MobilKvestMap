@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import android.widget.Toast;
 
+import com.example.mobilprojectkvest.History;
 import com.example.mobilprojectkvest.MapsActivity;
 import com.example.mobilprojectkvest.UpdateDateProfile;
 import com.example.mobilprojectkvest.databinding.FragmentHomeBinding;
@@ -28,6 +29,15 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+
+        Button history = binding.HistoryBTN;
+        history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), History.class);
+                startActivity(intent);
+            }
+        });
 
         Button map = binding.MapBtn;
         map.setOnClickListener(new View.OnClickListener() {

@@ -14,9 +14,5 @@
             android:icon="@drawable/ic_baseline_account_circle_24"
             android:title="Профиль" />
 
-        <item
-            android:id="@+id/nav_history"
-            android:icon="@drawable/ic_baseline_history_24"
-            android:title="@string/menu_history" />
     </group>
 </menu>
