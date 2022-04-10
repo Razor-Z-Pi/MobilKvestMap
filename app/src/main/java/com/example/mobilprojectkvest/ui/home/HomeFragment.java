@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.widget.Toast;
 
 import com.example.mobilprojectkvest.MapsActivity;
+import com.example.mobilprojectkvest.UpdateDateProfile;
 import com.example.mobilprojectkvest.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment {
@@ -27,16 +28,6 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        Button createQuest = binding.CreateQuestBtn;
-        createQuest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast createQuest = Toast.makeText(HomeFragment.this.getActivity(), "create quest", Toast.LENGTH_SHORT);
-                createQuest.show();;
-
-                return;
-            }
-        });
 
         Button map = binding.MapBtn;
         map.setOnClickListener(new View.OnClickListener() {

@@ -6,10 +6,11 @@ import android.content.Context;
 
 public class DataBase extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "kvestDB.db"; // Навзвание БД
-    private static final int SCHEMA = 3; // Версия БД
+    private static final int SCHEMA = 5; // Версия БД
     static final String TABLE_AUTH = "Authorization";
     static final String TABLE_USER = "User";
     static final String TABLE_KVEST = "Kvest";
+    static final String TABLE_TEST = "TestKvest";
 
     public DataBase(Context context) {
         super(context, DATABASE_NAME, null, SCHEMA);
@@ -21,6 +22,7 @@ public class DataBase extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_AUTH + " (id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "login TEXT," +
                 "password TEXT);");
+
         // Создание таблицы справочника пользователя
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_USER + " (id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "nickname TEXT," +
@@ -28,11 +30,19 @@ public class DataBase extends SQLiteOpenHelper {
                 "id_auth INTEGER," +
                 "FOREIGN KEY (id_kvest) REFERENCES "+ TABLE_KVEST +"(id)," +
                 "FOREIGN KEY (id_auth) REFERENCES "+ TABLE_AUTH +"(id));");
+
         // Создание таблицы с квестами
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_KVEST + " (id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "namePoint TEXT," +
                 "X REAL," +
-                "Y REAL);");
+                "Y REAL," +
+                "idTestKvest INTEGER," +
+                "FOREIGN KEY (idTestKvest) REFERENCES " + TABLE_TEST +"(id));");
+
+        //Создание таблицы для тестов
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_TEST + " (id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "description TEXT," +
+                "valueTest TEXT);");
 
         sqLiteDatabase.execSQL("INSERT INTO " + TABLE_AUTH + " (login, password) VALUES ('admin', '123');" );
 
@@ -43,6 +53,7 @@ public class DataBase extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_AUTH);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_KVEST);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_TEST);
         onCreate(sqLiteDatabase);
     }
 }

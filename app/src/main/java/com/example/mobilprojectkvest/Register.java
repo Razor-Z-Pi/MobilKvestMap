@@ -22,7 +22,6 @@ public class Register extends AppCompatActivity {
 
     private DataBase databaseSource;
     private SQLiteDatabase db;
-    private Cursor cursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

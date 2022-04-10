@@ -77,11 +77,14 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 if (Auth.moveToFirst()) {
                     for (int i = 0; i < Auth.getCount(); i++) {
+                        String index = Auth.getString(0);
                         String loginAuth = Auth.getString(1);
                         String passwordAuth = Auth.getString(2);
                         if (login.equals(loginAuth) && password.equals(passwordAuth)) {
                             Intent intent = new Intent(this, MenuPageActivity.class);
                             intent.putExtra("User", loginAuth);
+                            intent.putExtra("Password", passwordAuth);
+                            intent.putExtra("idUser", index);
                             startActivity(intent);
                             return;
                         }

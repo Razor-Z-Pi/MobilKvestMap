@@ -6,16 +6,16 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView4"
-        android:layout_width="156dp"
-        android:layout_height="71dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        android:id="@+id/LoginProfile"
+        android:layout_width="118dp"
+        android:layout_height="19dp"
+        android:text=""
+        app:layout_constraintBottom_toTopOf="@+id/PasswwordProfile"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.631"
+        app:layout_constraintHorizontal_bias="0.549"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.915" />
+        app:layout_constraintVertical_bias="0.634" />
 
     <TextView
         android:id="@+id/textView7"
@@ -23,38 +23,39 @@
         android:layout_height="wrap_content"
         android:text="Пароль"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textView5"
-        app:layout_constraintHorizontal_bias="0.723"
+        app:layout_constraintEnd_toStartOf="@+id/LoginProfile"
+        app:layout_constraintHorizontal_bias="0.642"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.359" />
+        app:layout_constraintVertical_bias="0.358" />
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="47dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="72dp"
         android:text="Логин"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.661"
+        app:layout_constraintEnd_toStartOf="@+id/PasswwordProfile"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.242" />
+        app:layout_constraintVertical_bias="0.21" />
 
     <TextView
-        android:id="@+id/textView5"
-        android:layout_width="153dp"
-        android:layout_height="67dp"
-        android:text="TextView"
+        android:id="@+id/PasswwordProfile"
+        android:layout_width="107dp"
+        android:layout_height="25dp"
+        android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.624"
+        app:layout_constraintHorizontal_bias="0.536"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.356" />
+        app:layout_constraintVertical_bias="0.358" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonDataUpdate"
         android:layout_width="147dp"
         android:layout_height="59dp"
         android:text="Изменить данные"
@@ -62,5 +63,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.76" />
+        app:layout_constraintVertical_bias="0.76"
+        android:onClick="onDataUpdate"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

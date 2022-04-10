@@ -21,33 +21,22 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/CreateQuestBtn"
-        android:layout_width="198dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="220dp"
-        android:text="Создать квест"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></Button>
-
-    <Button
         android:id="@+id/MapBtn"
-        android:layout_width="196dp"
-        android:layout_height="54dp"
+        android:layout_width="193dp"
+        android:layout_height="82dp"
         android:text="Карта"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CreateQuestBtn"
-        app:layout_constraintVertical_bias="0.134" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.384" />
 
     <Button
         android:id="@+id/ExitBtn"
-        android:layout_width="198dp"
-        android:layout_height="56dp"
+        android:layout_width="200dp"
+        android:layout_height="79dp"
         android:text="Выход"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -55,6 +44,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/MapBtn"
         app:layout_constraintVertical_bias="0.193" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

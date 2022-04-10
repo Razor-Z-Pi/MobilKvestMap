@@ -7,7 +7,10 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.content.ContentValues;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -51,6 +54,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Button cameraButon;
     private LatLng currentLatLng;
 
+    private DataBase databaseSource;
+    private SQLiteDatabase db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +76,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         addMarkerLauout.setVisibility(View.INVISIBLE);
         cameraButon.setVisibility(View.INVISIBLE);
+
+        databaseSource = new DataBase(getApplicationContext());
+        db = databaseSource.getWritableDatabase();
 
         markers = new List<Marker>() {
             @Override
@@ -208,12 +217,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View view)
             {
-                /*
-
-                МЕТКА ТУТ
-
-                 */
-
+                ContentValues contentValues = new ContentValues();
+                contentValues.put("namePoint", String.valueOf(markerName.getText()));
+                contentValues.put("X", currentLatLng.latitude);
+                contentValues.put("Y", currentLatLng.longitude);
+                db.update(DataBase.TABLE_KVEST, contentValues, null, null);
+                db.insert(DataBase.TABLE_KVEST, null, contentValues);
                 Marker myMarker;
                 myMarker = mMap.addMarker(new MarkerOptions()
                         .position(currentLatLng).title(String.valueOf(markerName.getText())));
@@ -221,6 +230,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 addMarkerLauout.setVisibility(View.INVISIBLE);
                 Toast toast = Toast.makeText(MapsActivity.this, "Маркер добавлен", Toast.LENGTH_SHORT);
                 toast.show();
+                Intent intent = new Intent(MapsActivity.this, KvestTestValue.class);
+                startActivity(intent);
+                databaseSource.close();
             }
         });
 
