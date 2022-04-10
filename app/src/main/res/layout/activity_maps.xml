@@ -3,6 +3,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Relative"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -78,10 +79,26 @@
                 android:text="TextView"
                 android:textColor="@color/black" />
 
+            <EditText
+                android:id="@+id/QustionTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Вопрос"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/AnswerTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Ответ"
+                android:inputType="textPersonName" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="200dp"
+                android:layout_marginTop="150dp"
                 android:orientation="horizontal">
 
                 <Button
@@ -101,9 +118,22 @@
                     android:layout_margin="10dp"
                     android:text="Сохранить" />
             </LinearLayout>
+
         </LinearLayout>
 
     </FrameLayout>
+
+    <TextView
+        android:id="@+id/VelocityTxt"
+        android:layout_width="104dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="37dp"
+        android:layout_marginBottom="659dp"
+        android:text="TextView" />
 
 
 </RelativeLayout>

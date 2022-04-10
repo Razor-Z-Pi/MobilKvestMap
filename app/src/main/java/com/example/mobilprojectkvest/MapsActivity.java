@@ -7,8 +7,10 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.Address;
@@ -17,6 +19,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,7 +40,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Objects;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, LocListenerIntarface {
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
@@ -50,7 +53,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private TextView markerLongitude;
     private Button saveMarker;
     private Button cancel;
-    private List<Marker> markers;
+    private EditText question;
+    private EditText answer;
+    private TextView velocity;
+
+    public List<Marker> markers;
+
     private Button cameraButon;
     private LatLng currentLatLng;
 
@@ -64,8 +72,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         setContentView(binding.getRoot());
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
+        setRequestedOrientation(ActivityInfo. SCREEN_ORIENTATION_PORTRAIT);
         mapFragment.getMapAsync(this);
 
+
+        question = findViewById(R.id.QustionTxt);
+        velocity = findViewById(R.id.VelocityTxt);
+        answer = findViewById(R.id.AnswerTxt);
         addMarkerLauout = findViewById(R.id.AddMarkerFrame);
         markerName = findViewById(R.id.PointName);
         markerLatitude = findViewById(R.id.PointLatidute);
@@ -75,7 +88,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         cameraButon = findViewById(R.id.CameraButton);
 
         addMarkerLauout.setVisibility(View.INVISIBLE);
-        cameraButon.setVisibility(View.INVISIBLE);
+       //cameraButon.setVisibility(View.INVISIBLE);
 
         databaseSource = new DataBase(getApplicationContext());
         db = databaseSource.getWritableDatabase();
@@ -213,6 +226,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         };
 
+        cameraButon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MapsActivity.this, CameraActivity.class);
+                startActivity(intent);
+            }
+        });
+
         saveMarker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
@@ -230,8 +251,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 addMarkerLauout.setVisibility(View.INVISIBLE);
                 Toast toast = Toast.makeText(MapsActivity.this, "Маркер добавлен", Toast.LENGTH_SHORT);
                 toast.show();
+                /*
                 Intent intent = new Intent(MapsActivity.this, KvestTestValue.class);
                 startActivity(intent);
+                 */
                 databaseSource.close();
             }
         });
@@ -281,21 +304,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
         {
             mMap.setMyLocationEnabled(true);
-            mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
-                @Override
-                public void onMyLocationChange(@NonNull Location location) {
-                    for (int i = 0 ; i < markers.size(); i++)
-                    {
-                        Location location1 = new Location("");
-                        location1.setLatitude(markers.get(i).getPosition().latitude);
-                        location1.setLongitude(markers.get(i).getPosition().longitude);
-                        if (location.distanceTo(location1) <= 100)
-                        {
-                            cameraButon.setVisibility(View.VISIBLE);
-                        }
-                    }
-                }
-            });
             mMap.setMinZoomPreference(15);
         }
     }
@@ -324,5 +332,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void requestLicationPermission()
     {
         ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSION_CODE);
+    }
+
+
+    @Override
+    public void OnLocationChanged(Location location) {
+        velocity.setText(String.valueOf(mMap.getMyLocation().getSpeed()));
+        for (int i = 0 ; i < markers.size(); i++)
+        {
+            Location location1 = new Location("");
+            location1.setLatitude(markers.get(i).getPosition().latitude);
+            location1.setLongitude(markers.get(i).getPosition().longitude);
+            if (location.distanceTo(location1) <= 100)
+            {
+                cameraButon.setVisibility(View.VISIBLE);
+            }
+        }
     }
 }
