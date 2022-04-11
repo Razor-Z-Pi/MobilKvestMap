@@ -47,9 +47,8 @@ public class UpdateDateProfile extends AppCompatActivity {
         try {
             Bundle arguments = getIntent().getExtras();
 
-            Login = "Maksim";
-            Password = "123";
-            Toast.makeText(this, Login + " " + Password, Toast.LENGTH_SHORT).show();
+            Login = arguments.get("User").toString();
+            Password = arguments.get("Password").toString();
 
             if (Login.equals(UpdateLoginProfile.getText().toString()) && Password.equals(UpdatePasswordProfile.getText().toString())) {
                 Toast.makeText(this, "Вы не изменили данные", Toast.LENGTH_SHORT).show();
@@ -59,7 +58,7 @@ public class UpdateDateProfile extends AppCompatActivity {
 
             contentValues.put("login", UpdateLoginProfile.getText().toString());
             contentValues.put("password", UpdatePasswordProfile.getText().toString());
-            int updateCount = db.update(DataBase.TABLE_AUTH, contentValues, "id = ?", new String[] {arguments.get("idUser").toString()});
+            int updateCount = db.update(DataBase.TABLE_AUTH, contentValues, "_id = ?", new String[] {arguments.get("idUser").toString()});
             Log.d("huy", "updated rows count = " + updateCount);
             Intent intent = new Intent(UpdateDateProfile.this, MenuPageActivity.class);
             dataBase.close();

@@ -8,19 +8,68 @@
 
     <ListView
         android:id="@+id/list"
-        android:layout_width="414dp"
-        android:layout_height="678dp"
+        android:layout_width="315dp"
+        android:layout_height="450dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/historyClose" />
+        app:layout_constraintTop_toBottomOf="@+id/historyClose"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/historyClose"
         android:layout_width="137dp"
         android:layout_height="52dp"
+        android:layout_marginTop="52dp"
         android:text="Назад"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.423"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/historyPush2"
+        android:layout_width="131dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="52dp"
+        android:text="Показать"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.91"
+        app:layout_constraintStart_toEndOf="@+id/historyClose"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/ShowDataTX"
+        android:layout_width="87dp"
+        android:layout_height="32dp"
+        android:text="Text"
+        app:layout_constraintBottom_toTopOf="@+id/list"
+        app:layout_constraintEnd_toStartOf="@+id/historyClose"
+        app:layout_constraintHorizontal_bias="0.551"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.303" />
+
+    <Button
+        android:id="@+id/DeleteButton"
+        android:layout_width="136dp"
+        android:layout_height="57dp"
+        android:text="Удалить"
+        app:layout_constraintBottom_toTopOf="@+id/list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.425"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/historyClose"
+        app:layout_constraintVertical_bias="0.555" />
+
+    <EditText
+        android:id="@+id/IdDelete"
+        android:layout_width="97dp"
+        android:layout_height="44dp"
+        app:layout_constraintBottom_toTopOf="@+id/list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.409"
+        app:layout_constraintStart_toEndOf="@+id/DeleteButton"
+        app:layout_constraintTop_toBottomOf="@+id/historyPush2"
+        app:layout_constraintVertical_bias="0.603" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,31 +1,40 @@
 package com.example.mobilprojectkvest;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class History extends AppCompatActivity {
 
     private ListView listDB;
     private Button btnClose;
+    private Button btnDelete;
+    private TextView textView;
+    private Button btnShow;
+    private EditText editText;
 
     private DataBase databaseSource;
     private SQLiteDatabase db;
     private Cursor cursor;
+    private SimpleCursorAdapter userAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
+
+        editText = findViewById(R.id.IdDelete);
 
         btnClose = findViewById(R.id.historyClose);
         btnClose.setOnClickListener(new View.OnClickListener() {
@@ -35,39 +44,49 @@ public class History extends AppCompatActivity {
             }
         });
 
+        btnShow = findViewById(R.id.historyPush2);
+        btnShow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    // открываем подключение
+                    db = databaseSource.getReadableDatabase();
+                    //получаем данные из бд в виде курсора
+                    cursor = db.rawQuery("SELECT * FROM " + DataBase.TABLE_KVEST + ";", null);
+
+                    if (cursor.moveToFirst()) {
+                        String[] from = new String[] {"_id", "namePoint", "X", "Y"};
+                        // создаем адаптер, передаем в него курсор
+                        userAdapter = new SimpleCursorAdapter(History.this, android.R.layout.two_line_list_item,
+                                cursor, from, new int[]{ android.R.id.text1, android.R.id.text2 }, 0);
+                        listDB.setAdapter(userAdapter);
+                    }
+                } catch (Exception exception) {
+                    Toast.makeText(History.this, exception.toString(), Toast.LENGTH_SHORT).show();
+                }
+                textView.setText("" + cursor.getCount());
+            }
+        });
+
+        btnDelete = findViewById(R.id.DeleteButton);
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                db.close();
+                db = databaseSource.getWritableDatabase();
+                Toast.makeText(History.this, "Должно что-то удалиться", Toast.LENGTH_SHORT).show();
+                db.delete(DataBase.TABLE_KVEST, "_id = ?", new String[]{String.valueOf(editText.getText())});
+            }
+        });
+
         listDB = findViewById(R.id.list);
+        textView = findViewById(R.id.ShowDataTX);
 
         databaseSource = new DataBase(getApplicationContext());
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        // открываем подключение
-        db = databaseSource.getReadableDatabase();
-        //получаем данные из бд в виде курсора
-        cursor = db.rawQuery("SELECT * FROM " + DataBase.TABLE_KVEST + ";", null);
-
-        String text = "";
-
-
-        if (cursor.getCount() == 0) {
-            Toast.makeText(this, "Точек нету", Toast.LENGTH_SHORT).show();
-        }
-        for (int i = 0; i < cursor.getCount(); i++) {
-            text += cursor.getString(0) + "\n" + cursor.getString(1) + "\n" + cursor.getString(2) + "\n" + cursor.getString(3) + "\n" + cursor.getString(4) + "\n";
-        }
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
-        String[] array = new String[] {};
-        ArrayAdapter<String> adapter = new ArrayAdapter(this,
-                android.R.layout.simple_list_item_2, array);
-
-        listDB.setAdapter(adapter);
-    }
 
     public void OnCloseHistory() {
-        db.close();
-        cursor.close();
         Intent intent = new Intent(this, MenuPageActivity.class);
         startActivity(intent);
     }

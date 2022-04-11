@@ -6,7 +6,7 @@ import android.content.Context;
 
 public class DataBase extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "kvestDB.db"; // Навзвание БД
-    private static final int SCHEMA = 5; // Версия БД
+    private static final int SCHEMA = 12; // Версия БД
     static final String TABLE_AUTH = "Authorization";
     static final String TABLE_USER = "User";
     static final String TABLE_KVEST = "Kvest";
@@ -19,33 +19,30 @@ public class DataBase extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         //Создание таблицы авторизации
-        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_AUTH + " (id INTEGER PRIMARY KEY AUTOINCREMENT," +
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_AUTH + " (_id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "login TEXT," +
-                "password TEXT);");
+                "Password TEXT);");
 
         // Создание таблицы справочника пользователя
-        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_USER + " (id INTEGER PRIMARY KEY AUTOINCREMENT," +
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_USER + " (_id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "nickname TEXT," +
                 "id_kvest INTEGER," +
                 "id_auth INTEGER," +
-                "FOREIGN KEY (id_kvest) REFERENCES "+ TABLE_KVEST +"(id)," +
-                "FOREIGN KEY (id_auth) REFERENCES "+ TABLE_AUTH +"(id));");
+                "FOREIGN KEY (id_kvest) REFERENCES "+ TABLE_KVEST +"(_id)," +
+                "FOREIGN KEY (id_auth) REFERENCES "+ TABLE_AUTH +"(_id));");
 
         // Создание таблицы с квестами
-        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_KVEST + " (id INTEGER PRIMARY KEY AUTOINCREMENT," +
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_KVEST + " (_id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "namePoint TEXT," +
                 "X REAL," +
                 "Y REAL," +
                 "idTestKvest INTEGER," +
-                "FOREIGN KEY (idTestKvest) REFERENCES " + TABLE_TEST +"(id));");
+                "FOREIGN KEY (idTestKvest) REFERENCES " + TABLE_TEST +"(_id));");
 
         //Создание таблицы для тестов
-        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_TEST + " (id INTEGER PRIMARY KEY AUTOINCREMENT," +
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_TEST + " (_id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "description TEXT," +
                 "valueTest TEXT);");
-
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_AUTH + " (login, password) VALUES ('admin', '123');" );
-
     }
 
     @Override

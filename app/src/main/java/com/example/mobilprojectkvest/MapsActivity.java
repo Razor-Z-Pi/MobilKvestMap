@@ -248,15 +248,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 db.insert(DataBase.TABLE_KVEST, null, contentValues);
 
                 Marker myMarker;
-                cursor = db.rawQuery("SELECT * FROM " + databaseSource.TABLE_KVEST + ";", null);
-
-                for (int i = 0; i < cursor.getCount(); i++) {
-                    LatLng latLng = new LatLng(cursor.getDouble(2), cursor.getDouble(3));
-
-                    myMarker = mMap.addMarker(new MarkerOptions()
-                            .position(latLng).title(cursor.getString(1)));
-                    markers.add(myMarker);
-                }
+                myMarker = mMap.addMarker(new MarkerOptions()
+                            .position(currentLatLng).title(String.valueOf(markerName.getText())));
+                markers.add(myMarker);
                 addMarkerLauout.setVisibility(View.INVISIBLE);
                 Toast toast = Toast.makeText(MapsActivity.this, "Маркер добавлен", Toast.LENGTH_SHORT);
                 toast.show();

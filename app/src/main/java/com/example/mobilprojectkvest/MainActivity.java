@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         password = passwordTxt.getText().toString();
 
         // Получаем данные
-        Auth = db.rawQuery("SELECT * FROM " + databaseSource.TABLE_AUTH + ";", null);
+        Auth = db.rawQuery("SELECT * FROM " + DataBase.TABLE_AUTH + ";", null);
 
         try {
             if (login.equals("") || password.equals("")) {
